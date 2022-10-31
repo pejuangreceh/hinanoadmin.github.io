@@ -1,0 +1,187 @@
+{% extends "base.html" %} {% block main %} {% load static %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          {% comment %}
+          <h1>Topics Create</h1>
+          {% endcomment %}
+        </div>
+        <div class="col-sm-6"></div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+    <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+      <div class="row">
+        <div class="col-6">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Create Quizzes</h3>
+              </div>
+              <div class="card-body">
+              {% comment %} <div id="dynamicCheck">
+              <input type="button" value="Create Element" onclick="createNewElement();"/>
+              </div> {% endcomment %}
+                <div class="form-group">
+                  <label for="exampleInputBorder">ID</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-border"
+                    id="exampleInputBorder"
+                    placeholder=""
+                    name="id"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputBorder">Title</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-border"
+                    id="exampleInputBorder"
+                    placeholder=""
+                    name="title"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputBorder">Description</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-border"
+                    id="exampleInputBorder"
+                    placeholder=""
+                    name="description"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Topic</label>
+                  <select class="form-control select2" style="width: 100%;" name="topic">
+                  {% for x in tampil %}
+                    <option value="{{ x.id }}">{{ x.title }}</option>
+                  {% endfor %}
+
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputFile">Cover</label>
+                    <input
+                    type="file"
+                    class="form-control form-control-border"
+                    id="exampleInputBorder"
+                    placeholder=""
+                    name="datafile_cover"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputFile">Document</label>
+                    <input
+                    type="file"
+                    class="form-control form-control-border"
+                    id="exampleInputBorder"
+                    placeholder=""
+                    name="datafile_doc"
+                    required
+                  />
+                </div>
+              </div>
+            </div>
+          </form>
+          <!-- /.card -->
+        </div>
+        <div class="col-6">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Quizzes</h3>
+              </div>
+              <div class="card-body">
+                <div class="form-group row" id="dynamicCheck">
+                  <input class="col-3" type="button" value="Add" onclick="createNewElement2();"/>
+                   
+                </div>
+                <div class="form-group row" id="new_row2">
+                <label class='col-6' for='exampleInputBorder'>Quiz ID {{ forloop.counter0 }}</label> <input type='text' class='form-control form-control-border col-6' id='exampleInputBorder' placeholder='' required name='quizzes'/>
+                </div>
+                <div id="newElementId2">
+                </div>
+              </div>
+            </div>
+          <!-- /.card -->
+        </div>
+        <div class="col-6">
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Videos</h3>
+              </div>
+              <div class="card-body">
+                
+                <div class="form-group row" id="dynamicCheck">
+                  <input class="col-3" type="button" value="Add" onclick="createNewElement();"/>
+                </div>
+                <div class="form-group row" id="new_row">
+                
+                <label class='col-6' for='exampleInputBorder'>Link {{ forloop.counter0 }}</label> <input type='text' class='form-control form-control-border col-6' id='exampleInputBorder' placeholder='' required name='answer{{ forloop.counter0 }}'/>
+                </div>
+                <div id="newElementId">
+                </div>
+              </div>
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary float-right">
+                  Submit
+                </button>
+              </div>
+            </div>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </form>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+<script>
+  $(function () {
+  bsCustomFileInput.init();
+});
+</script>
+<script type="text/JavaScript">
+//for Video Links
+function createNewElement() {
+    // First create a DIV element.
+	var txtNewInputBox = document.createElement('div');
+  txtNewInputBox.className = 'form-group row';
+  txtNewInputBox.setAttribute('id', 'new_row');
+    // Then add the content (a new input box) of the element.
+	txtNewInputBox.innerHTML = "<label class='col-6' for='exampleInputBorder'>Link {{ forloop.counter0 }}</label> <input type='text' class='form-control form-control-border col-6' id='exampleInputBorder' placeholder='' required name='answer'/>";
+    // Finally put it where it is supposed to appear.
+	document.getElementById("newElementId").appendChild(txtNewInputBox);
+  
+}
+//for Quizzes
+function createNewElement2() {
+    // First create a DIV element.
+	var txtNewInputBox = document.createElement('div');
+  txtNewInputBox.className = 'form-group row';
+  txtNewInputBox.setAttribute('id', 'new_row2');
+    // Then add the content (a new input box) of the element.
+	txtNewInputBox.innerHTML = "<label class='col-6' for='exampleInputBorder'>Quiz ID {{ forloop.counter0 }}</label> <input type='text' class='form-control form-control-border col-6' id='exampleInputBorder' placeholder='' required name='quizzes'/>";
+    // Finally put it where it is supposed to appear.
+	document.getElementById("newElementId2").appendChild(txtNewInputBox);
+  
+}
+</script>
+{% endblock %}

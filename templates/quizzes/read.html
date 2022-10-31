@@ -1,0 +1,79 @@
+{% extends "base.html" %} {% block main %} {% load static %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>Quizzes</h1>
+        </div>
+        <div class="col-sm-6"></div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title">Quiz Detail</h3>
+
+              <div class="card-tools">
+                <button
+                  type="button"
+                  class="btn btn-tool"
+                  data-card-widget="collapse"
+                  title="Collapse"
+                >
+                  <i class="fas fa-minus"></i>
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-tool"
+                  data-card-widget="remove"
+                  title="Remove"
+                >
+                  <i class="fas fa-times"></i>
+                </button>
+              </div>
+            </div>
+            <div class="card-body">
+              <dl class="row">
+                <dt class="col-sm-4">ID</dt>
+                <dd class="col-sm-8">{{tampil.id }}</dd>
+                <dt class="col-sm-4">Question</dt>
+                <dd class="col-sm-8">{{ tampil.question }}</dd>
+                <dt class="col-sm-4">Answers</dt>
+                <dd class="col-sm-8"></dd>
+                {% for x in tampil.answers %}
+                <dt class="col-sm-4"></dt>
+                <dd class="col-sm-8">[{{ forloop.counter0 }}] {{ x }}</dd>
+                {% endfor %}
+                <dt class="col-sm-4">Detail</dt>
+                <dd class="col-sm-8">{{tampil.detail }}</dd>
+                <dt class="col-sm-4">True Answer</dt>
+                <dd class="col-sm-8">{{ tampil.true_answer }}</dd>
+              </dl>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+          {% comment %} {{ tampil.id }} {{tampil.title }} {{ tampil.description
+          }} {% endcomment %}
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+{% endblock %}

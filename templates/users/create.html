@@ -1,0 +1,107 @@
+{% extends "base.html" %} {% block main %} {% load static %}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          {% comment %}
+          <h1>Topics Create</h1>
+          {% endcomment %}
+        </div>
+        <div class="col-sm-6"></div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-6">
+          {% comment %} {{ tampil.id }} {{tampil.title }} {{ tampil.description
+          }} {% endcomment %}
+          <form method="POST">
+            {% csrf_token %}
+            <div class="card card-primary">
+              <div class="card-header">
+                <h3 class="card-title">Create Users</h3>
+              </div>
+              <div class="card-body">
+                <div class="form-group">
+                  <label for="exampleInputBorder">Name</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-border"
+                    id="exampleInputBorder"
+                    placeholder=""
+                    name="name"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="exampleInputBorder">Email</label>
+                  <input
+                    type="text"
+                    class="form-control form-control-border"
+                    id="exampleInputBorder"
+                    placeholder=""
+                    name="email"
+                  />
+                </div>
+                <div class="form-group">
+                  <label>Gender</label>
+                  <select
+                    class="form-control select2bs4"
+                    style="width: 40%"
+                    name="gender"
+                  >
+                    <option value="L">Laki-laki</option>
+                    <option value="P">Perempuan</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label>Birthday</label>
+                  <div
+                    class="input-group date"
+                    id="reservationdate"
+                    data-target-input="nearest"
+                  >
+                    <input
+                      type="text"
+                      class="form-control datetimepicker-input"
+                      data-target="#reservationdate"
+                      name="birthday"
+                    />
+                    <div
+                      class="input-group-append"
+                      data-target="#reservationdate"
+                      data-toggle="datetimepicker"
+                    >
+                      <div class="input-group-text">
+                        <i class="fa fa-calendar"></i>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="card-footer">
+                <button type="submit" class="btn btn-primary float-right">
+                  Submit
+                </button>
+              </div>
+            </div>
+          </form>
+          <!-- /.card -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </section>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+{% endblock %}
